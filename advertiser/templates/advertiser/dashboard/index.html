@@ -58,7 +58,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="{% url 'advertiser:home' %}"><i class="lnr lnr-power-switch"></i><span>Dashboard</span></a></li>
 						<li class="active"><a href="{% url 'advertiser:add-advertisement' %}"><i class="lnr lnr-spell-check"></i> <span>Add</span></a></li>
 
-						<li class="active"><a href="{% url 'advertiser:statistics' %}"><i class="lnr lnr-indent-increase"></i> <span>Statistics</span></a>
+						<li class="active"><a href="{% url 'advertiser:statistics' %}"><i class="lnr lnr-indent-increase"></i> <span>Charts</span></a>
 
 						</li>
 
@@ -118,7 +118,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="r3_counter_box">
 								<i class="fa fa-mail-forward"></i>
 								<div class="stats">
-								  <h5>45 <span>%</span></h5>
+								  <h5>{{dash}} <span>%</span></h5>
 								  <div class="grow">
 									<p>Growth</p>
 								  </div>
@@ -140,7 +140,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="r3_counter_box">
 								<i class="fa fa-eye"></i>
 								<div class="stats">
-								  <h5>70 <span>%</span></h5>
+								  <h5>{{dash}} <span>%</span></h5>
 								  <div class="grow grow3">
 									<p>Visitors</p>
 								  </div>

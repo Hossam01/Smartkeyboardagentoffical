@@ -35,7 +35,7 @@ tr:nth-child(even) {
     <td>name{{student.description}}</td>
     <td>{{student.pub_date}}</td>
     <td><a href="{% url 'advertiser:Advertisements' %}{{ student.id }}"><i class="fa fa-trash"></i>Delete</a></td>
-    <td><a href="{% url 'advertiser:update' %}{{ student.id }}"><i class="fa fa-trash"></i>Update</a></td>
+    <td><a href="{% url 'advertiser:Advertisements' %}{{ student.id }}/update"><i class="fa fa-trash"></i>Update</a></td>
 
 
   </tr>

@@ -29,10 +29,13 @@ class DashboardView(View):
     template_name = 'advertiser/dashboard/index.html'
 
     def get(self, request):
-        dash = Advertisement.objects.filter(name="Hossam").count()
-        context = {'dash': dash}
+        if 'username' in request.session:
+            dash = Advertisement.objects.filter(name=request.session['username']).count
+            context = {'dash':dash}
+            return render(request, 'advertiser/dashboard/index.html', context)
+        else:
+            return redirect('/advertiser/login')
 
-        return render(request, 'advertiser/dashboard/index.html', context)
 
 
 class ContactView(View):
@@ -60,7 +63,7 @@ class ChartsView(View):
     template_name = 'advertiser/dashboard/charts.html'
 
     def get(self, request):
-        stuents = Advertisement.objects.filter(name="Hossam").count()
+        stuents = Advertisement.objects.filter().count()
         context = {'stuents': stuents}
         return render(request, 'advertiser/dashboard/charts.html', context)
 
@@ -69,9 +72,9 @@ class ChartsView(View):
 
 
 def logout(request):
-    request.session['username'] = 'test'
-    del request.session['username']
-    return redirect('/advertiser/')
+     if 'username' in request.session:
+         del request.session['username']
+         return redirect('/advertiser/')
 
 
 class HomeView(View):
@@ -108,7 +111,7 @@ class LoginFormView(View):
             if Advertiser.objects.filter(name=form.cleaned_data['username']).exists():
                 advertiser = Advertiser.objects.get(name=form.cleaned_data['username'])
                 if check_password(form.cleaned_data['password'], advertiser.password):
-                    username = request.session['username'] = form.cleaned_data['username']
+                    username = request.session['username'] =form.cleaned_data['username']
                     context = {'username': username}
                     return redirect('/advertiser/dashboard/', context)
                 else:
@@ -145,7 +148,7 @@ class RegistrationFormView(View):
                     phone = form.cleaned_data['phone']
                     Advertiser.objects.create(name=name, email=email, password=password, phone=phone, budget=50)
                     messages.success(request, "Your account has been registered successfully!")
-                    return redirect('advertiser/login')
+                    return redirect('/advertiser/login')
                 else:
                     form = RegistrationForm(None)
                     messages.error(request, 'Password does not match')
@@ -185,7 +188,7 @@ class AdvertisementFormView(View):
         if form.is_valid():
             if 'username' in request.session:
                 username = request.session['username']
-                hoss = Advertiser.objects.get(id=username)
+                hoss = Advertiser.objects.get(name=username)
             name = form.cleaned_data['name']
             description = form.cleaned_data['description']
             pub_date = form.cleaned_data['pub_date']
@@ -193,21 +196,12 @@ class AdvertisementFormView(View):
             min_age = form.cleaned_data['min_age']
             category = form.cleaned_data.get('category')
             Advertisement.objects.create(name=name, description=description, pub_date=pub_date, advertiser=hoss)
-        if request.POST.get('delete'):
-            nameads = form.cleaned_data.get('advertisement')
-            Advertisement.objects.get(name=nameads).delete()
-        if request.POST.get('update'):
-            name = form.cleaned_data['name']
-            description = form.cleaned_data['description']
-            pub_date = form.cleaned_data['pub_date']
-            nameads = form.cleaned_data.get('advertisement')
-            Advertisement.objects.filter(name=nameads).update(name=name, description=description, pub_date=pub_date)
         newform = Userinput(None)
         return render(request, 'advertiser/dashboard/forms.html', {'form': newform})
 
 
 def Student(request):
-    stuents = Advertisement.objects.filter(name="Hossam").count()
+    stuents = Advertisement.objects.all.count()
     context = {'stuents': stuents}
     return render(request, 'advertiser/dashboard/charts.html', context)
 
@@ -240,16 +234,25 @@ class ResetFormView(View):
                           {'form': form})
 
 
+global hoss,username
 def advertisement(request):
-    stuents = Advertisement.objects.all()
+    if 'username' in request.session:
+        username = request.session['username']
+        hoss = Advertiser.objects.get(name=username)
+    stuents = Advertisement.objects.all().filter(advertiser=hoss)
     context = {'stuents': stuents}
     return render(request, 'advertiser/dashboard/update.html', context)
 
 
 def delete(request, part_id):
+    if 'username' in request.session:
+        username = request.session['username']
+        hoss = Advertiser.objects.get(name=username)
+    stuents = Advertisement.objects.all().filter(advertiser=hoss)
+    context = {'stuents': stuents}
     object = Advertisement.objects.get(id=part_id)
     object.delete()
-    return render(request, 'advertiser/dashboard/Done.html')
+    return render(request, 'advertiser/dashboard/update.html',context)
 
 
 class UpdateFormView(View):
@@ -266,8 +269,7 @@ class UpdateFormView(View):
         if form.is_valid():
             name = form.cleaned_data['name']
             description = form.cleaned_data['description']
-            pub_date = form.cleaned_data['pub_date']
-            Advertisement.objects.filter(id=part_id).update(name=name, description=description, pub_date=pub_date)
+            Advertisement.objects.filter(id=part_id).update(name=name, description=description)
             newform = update(None)
             return render(request, 'advertiser/dashboard/updateData.html', {'form': newform})
 
@@ -284,11 +286,15 @@ class ChangepasswordFormView(View):
     def post(self, request):
         form = changeForm(request.POST)
         if form.is_valid():
-            if Advertiser.objects.filter(email=form.cleaned_data['email']).exists():
+            if Advertiser.objects.filter(name=form.cleaned_data['username']).exists():
                 if form.cleaned_data['password'] == form.cleaned_data['confirmpassword']:
-                    email = form.cleaned_data['email']
+                    name = form.cleaned_data['username']
                     password = make_password(form.cleaned_data['password'])
-                    Advertiser.objects.filter(email=email).update(password=password)
+                    Advertiser.objects.filter(name=name).update(password=password)
+                    return redirect('advertiser/login')
+
+            else:
+                messages.error(request, 'Username is not here')
 
             form = changeForm(None)
             return render(request, 'advertiser/changeEmail.html',

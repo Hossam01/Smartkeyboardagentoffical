@@ -18,13 +18,12 @@ urlpatterns = [
     # url(r'charts/$', ChartsView.as_view(), name='charts'),
     url(r'statistics/$', ChartsView.as_view(), name='statistics'),
     url(r'contact/$', ContactView.as_view(), name='contact'),
-
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'email/$', ResetFormView.as_view(), name='email'),
     url(r'Advertisements/$', advertisement, name='Advertisements'),
     url(r'Advertisements/(?P<part_id>[0-9]+)/$', delete, name='delete'),
     url(r'Changepassword/$', ChangepasswordFormView.as_view(), name='Changepassword'),
-    url(r'update/(?P<part_id>[0-9]+)/$', UpdateFormView.as_view(), name='update'),
+    url(r'Advertisements/(?P<part_id>[0-9]+)/update/$', UpdateFormView.as_view(), name='update'),
 
 
 ]
