@@ -63,9 +63,12 @@ class ChartsView(View):
     template_name = 'advertiser/dashboard/charts.html'
 
     def get(self, request):
-        stuents = Advertisement.objects.filter().count()
-        context = {'stuents': stuents}
-        return render(request, 'advertiser/dashboard/charts.html', context)
+        if 'username' in request.session:
+         stuents = Advertisement.objects.filter().count()
+         context = {'stuents': stuents}
+         return render(request, 'advertiser/dashboard/charts.html', context)
+        else:
+            return redirect('/advertiser/login/')
 
     def post(self, request):
         pass
@@ -132,6 +135,8 @@ class RegistrationFormView(View):
     template_name = 'advertiser/registration.html'
 
     def get(self, request):
+        if 'username' in request.session:
+            return redirect('/advertiser/')
         form = RegistrationForm(None)
         context = {'form': form}
         return render(request, 'advertiser/registration.html', context)
@@ -167,6 +172,7 @@ class AdvertisersListView(generic.ListView):
     template_name = 'advertiser/index.html'
 
     def get_queryset(self):
+
         return Advertiser.objects.all()
 
 
@@ -179,9 +185,12 @@ class AdvertisementFormView(View):
     template_name = 'advertiser/dashboard/forms.html'
 
     def get(self, request):
+      if 'username' in request.session:
         form = Userinput(None)
         context = {'form': form}
         return render(request, 'advertiser/dashboard/forms.html', context)
+      else:
+          return redirect('/advertiser/login/')
 
     def post(self, request):
         form = Userinput(request.POST)
@@ -217,6 +226,8 @@ class ResetFormView(View):
     template_name = 'advertiser/email.html'
 
     def get(self, request):
+        if 'username' in request.session:
+          return redirect('/advertiser/dashboard/')
         form = RegistrationForm(None)
         context = {'form': form}
         return render(request, 'advertiser/email.html', context)

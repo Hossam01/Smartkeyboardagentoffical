@@ -77,5 +77,18 @@ class changeForm(forms.Form):
     username.widget = forms.TextInput(attrs={'placeholder': 'Username'})
 
 class update(forms.Form):
-    name = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'name'}))
-    description = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'description'}))
+    name = forms.CharField(required=True,
+                           widget=forms.TextInput(attrs={'placeholder': 'name', ' class': 'form-control1'}))
+    description = forms.CharField(required=True, widget=forms.TextInput(
+        attrs={'placeholder': 'description', ' class': 'form-control1'}))
+    max_age = forms.IntegerField(required=True,
+                                 widget=forms.TextInput(attrs={'placeholder': 'max_age', ' class': 'form-control1'}))
+    min_age = forms.IntegerField(required=True,
+                                 widget=forms.TextInput(attrs={'placeholder': 'min_age', ' class': 'form-control1'}))
+
+    category = forms.MultipleChoiceField(
+        choices=OPTIONS,
+        initial='0',
+        widget=forms.SelectMultiple(attrs={' class': 'js-example-basic-multiple'}),
+        required=True,
+        label='Office')
