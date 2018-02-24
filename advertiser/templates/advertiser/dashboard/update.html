@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+  <style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+<form action="" method="post">
+<table style="width:80%">
+  <tr>
+    <td>name</td>
+    <td>description</td>
+    <td>pub_date</td>
+  </tr>
+{% for student in stuents %}
+  <tr>
+    <td>{{student.name}}</td>
+    <td>name{{student.description}}</td>
+    <td>{{student.pub_date}}</td>
+    <td><a href="{% url 'advertiser:Advertisements' %}{{ student.id }}"><i class="fa fa-trash"></i>Delete</a></td>
+    <td><a href="{% url 'advertiser:update' %}{{ student.id }}"><i class="fa fa-trash"></i>Update</a></td>
+
+
+  </tr>
+{%endfor%}
+</table>
+</form>
+</body>
+</html>

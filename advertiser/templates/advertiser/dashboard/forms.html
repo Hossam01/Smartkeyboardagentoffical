@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Add Advertisment </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Easy Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <!-- Bootstrap Core CSS -->
+<link href="{% static 'advertiser/dashboard/css/bootstrap.min.css' %}" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="{% static 'advertiser/dashboard/css/style.css' %}" rel='stylesheet' type='text/css' />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<link href="vendor/select2/dist/css/select2.min.css" rel="stylesheet" />
+<link href="path/to/select2.min.css" rel="stylesheet" />
+
+
+
+<!-- Graph CSS -->
+<link href="{% static 'advertiser/dashboard/css/font-awesome.css' %}" rel="stylesheet">
+<!-- jQuery -->
+<!-- lined-icons -->
+<link rel="stylesheet" href="{% static 'advertiser/dashboard/css/icon-font.min.css' %}" type='text/css' />
+<!-- //lined-icons -->
+<!-- chart -->
+<script src="{% static 'advertiser/dashboard/js/Chart.js' %}"></script>
+<!-- //chart -->
+<!--animate-->
+<link href="{% static 'advertiser/dashboard/css/animate.css' %}" rel="stylesheet" type="text/css" media="all">
+<script src="{% static 'advertiser/dashboard/js/wow.min.js' %}"></script>
+	<script>
+		 new WOW().init();
+	</script>
+<!--//end-animate-->
+<link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+<!---//webfonts--->
+ <!-- Meters graphs -->
+<script src="{% static 'advertiser/dashboard/js/jquery-1.10.2.min.js' %}"></script>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+
+</head> 
+   
+ <body class="sticky-header left-side-collapsed"  onload="initMap()">
+    <section>
+    <!-- left side start-->
+		<div class="left-side sticky-left-side">
+
+
+			<div class="logo">
+				<h1><a href="{% url 'advertiser:home' %}">Adver<span>tiser</span></a></h1>
+			</div>
+			<div class="logo-icon text-center">
+				<a href="{% url 'advertiser:home' %}"><i class="lnr lnr-home"></i> </a>
+			</div>
+
+
+			<!--logo and iconic logo end-->
+			<div class="left-side-inner">
+
+				<!--sidebar nav start-->
+					<ul class="nav nav-pills nav-stacked custom-nav">
+						<li><a href="{% url 'advertiser:home' %}"><i class="lnr lnr-power-switch"></i><span>Dashboard</span></a></li>
+						<li class="active"><a href="{% url 'advertiser:add-advertisement' %}"><i class="lnr lnr-spell-check"></i> <span>Add</span></a></li>
+
+						<li class="active"><a href="{% url 'advertiser:statistics' %}"><i class="lnr lnr-indent-increase"></i> <span>Charts</span></a>
+
+
+
+								<li class="active"><a href="{% url 'advertiser:login' %}">
+                            <i class="lnr lnr-lock"></i> <span>Sign In</span></a>
+
+
+                           <li class="active"><a href="{% url 'advertiser:login' %}">
+                            <i class="lnr lnr-exit"></i> <span> Logout</span></a>
+
+
+
+				<!--sidebar nav end-->
+			</ul>
+				<!--sidebar nav end-->
+			</div>
+		</div>
+
+    
+    <!-- main content start-->
+		
+			<!-- header-starts -->
+			<div class="header-section">
+
+			<!--toggle button end-->
+
+										<!-- search-scripts -->
+										<script src="{% static 'advertiser/dashboard/js/classie.js' %}"></script>
+										<script src="{% static 'advertiser/dashboard/js/uisearch.js' %}"></script>
+											<script>
+												new UISearch( document.getElementById( 'sb-search' ) );
+											</script>
+										<!-- //search-scripts -->
+
+
+
+							<div class="clearfix"></div>
+						</ul>
+					</div>
+					<div class="profile_details">
+						<ul>
+							<li class="dropdown profile_details_drop">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+
+								</a>
+
+							</li>
+							<div class="clearfix"> </div>
+						</ul>
+					</div>
+
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<!--notification menu end -->
+			</div>
+	<!-- //header-ends -->
+			<div id="page-wrapper">
+				<div class="graphs">
+			
+					    <h3 class="blank1"> Add Advertisment </h3>
+						<div class="tab-content">
+						<div class="tab-pane active" id="horizontal-form">
+							<form class="form-horizontal">
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Name</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder="Advertisement Name">
+									</div>
+									
+								</div>
+								<div class="form-group">
+									<label for="disabledinput" class="col-sm-2 control-label">Description</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder="Description">
+									</div>
+								</div>
+                                <div class="form-group">
+									<label for="disabledinput" class="col-sm-2 control-label">Pub_Date</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder="Pub_Date">
+									</div>
+
+								</div>
+                                <div class="form-group">
+									<label for="disabledinput" class="col-sm-2 control-label">Max_Age</label>
+									<div class="col-sm-3">
+										<input type="text" class="form-control1" id="focusedinput" placeholder="Max_Age">
+									</div>
+                                    <label for="disabledinput" class="col-sm-2 control-label">Min_Age</label>
+									<div class="col-sm-3">
+										<input type="text" class="form-control1" id="focusedinput" placeholder="Min_Age">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="checkbox" class="col-sm-2 control-label">Select</label>
+									<div class="col-sm-8">
+										<div class="checkbox-inline1"><label><input type="checkbox"> Images</label></div>
+										<div class="checkbox-inline1"><label><input type="checkbox" checked=""> Videos</label></div>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="selector1" class="col-sm-2 control-label">Choose Category</label>
+									<div class="col-sm-8">
+                                        <select class="js-example-basic-multiple" name="states[]" multiple="multiple">										<option>Sports</option>
+										<option value="AL">Technology</option>
+										<option value="AL">Shopping</option>
+										<option value="AL">Cooking</option>
+										<option value="AL">Travel</option>
+										
+									</select></div>
+								</div>
+
+        </form>
+						</div>
+						<br>
+						<br>
+						<br>
+						<br>
+						  <div class="form-group">
+							<label for="exampleInputFile">Extra local File</label>
+							<input type="file" id="exampleInputFile">
+						  </div>
+						  
+						  <div class="panel-footer">
+							<div class="row">
+								<div class="col-sm-8 col-sm-offset-2">
+									<button class="btn-success btn">Submit</button>
+									<button class="btn-default btn">Cancel</button>
+									<button class="btn-inverse btn">Reset</button>
+								</div>
+							</div>
+						 </div>
+						</form>
+					  </div>
+				</div>
+			</div>
+		</div>
+		<!--footer section start-->
+			<footer>
+			   <p>© 2018 </p>
+			</footer>
+        <!--footer section end-->
+	</section>
+	
+
+<script src="{% static 'advertiser/js/scripts.js' %}"></script>
+<!-- Bootstrap Core JavaScript -->
+   <script src="{% static 'advertiser/js/bootstrap.min.js' %}"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+ <script src="vendor/select2/dist/js/select2.min.js"></script>
+ <script src="path/to/select2.min.js"></script>
+
+ <script>
+     $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+     });
+ </script>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>  Sign Up </title>
+    {% load static %}
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Easy Admin" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+ <!-- Bootstrap Core CSS -->
+<link href="{% static 'advertiser/dashboard/css/bootstrap.min.css' %}" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="{% static 'advertiser/dashboard/css/style.css' %}" rel='stylesheet' type='text/css' />
+<!-- Graph CSS -->
+<link href="{% static 'advertiser/dashboard/css/font-awesome.css' %}" rel="stylesheet">
+<!-- jQuery -->
+<!-- lined-icons -->
+<link rel="stylesheet" href="{% static 'advertiser/dashboard/css/icon-font.min.css' %}" type='text/css' />
+<!-- //lined-icons -->
+<!-- chart -->
+<script src="{% static 'advertiser/js/Chart.js' %}"></script>
+<!-- //chart -->
+<!--animate-->
+<link href="{% static 'advertiser/dashboard/css/animate.css' %}" rel="stylesheet" type="text/css" media="all">
+<script src="{% static 'advertiser/js/wow.min.js' %}"></script>
+	<script>
+		 new WOW().init();
+	</script>
+<!--//end-animate-->
+<!----webfonts--->
+<link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+<!---//webfonts--->
+ <!-- Meters graphs -->
+<script src="{% static 'advertiser/js/jquery-1.10.2.min.js' %}"></script>
+<!-- Placed js at the end of the document so the pages load faster -->
+
+</head>
+
+ <body class="sign-in-up">
+    <section>
+			<div id="page-wrapper" class="sign-in-wrapper">
+				<div class="graphs">
+					<div class="sign-up">
+						<form action="" method="POST">
+
+                              <div class="sign-u">
+							<div class="sign-up1">
+								<h4>Email:</h4>
+							</div>
+							<div class="sign-up2">
+                                 {% csrf_token %}
+								{{ form.email }}
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+                            <br>
+                            <br>
+                        <div class="sing-up-btn">
+                       <input type="submit" value="Submit" class="btn btn-primary"/>
+                        </div>
+                          </form>
+ {
+					</div>
+				</div>
+
+			</div>
+		<!--footer section start-->
+			<footer>
+			   <p>&copy 2018 </p>
+			</footer>
+        <!--footer section end-->
+	</section>
+
+<script src="{% static 'advertiser/js/jquery.nicescroll.js' %}"></script>
+<script src="{% static 'advertiser/js/scripts.js' %}"></script>
+<!-- Bootstrap Core JavaScript -->
+   <script src="{% static 'advertiser/js/bootstrap.min.js' %}"></script>
+</body>
+</html>
+

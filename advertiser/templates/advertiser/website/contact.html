@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<title>KeyBord Advertisement | Contact </title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Business Trade a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+</script>
+
+<link rel="stylesheet" href="{% static 'advertiser/website/css/bootstrap.css' %}">
+<link rel="stylesheet" href="{% static 'advertiser/website/css/style.css' %}" type="text/css" media="all" />
+<link href="{% static 'advertiser/website/css/font-awesome.css' %}" rel="stylesheet">
+<link href="{% static 'advertiser/website/css/nav.css' %}" rel="stylesheet" type="text/css" media="all"/>
+
+
+	<link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+<!-- //Web-Fonts -->
+
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+	<!-- Header -->
+		<div class="logo-waalayouts">
+			<h1><a href="{% url 'advertiser:home' %}"><span>Advertisement</span><span></span></a></h1>
+		</div>
+		
+		<!-- Navigation -->
+		<div class="container">
+			<button class="btn-nav">
+				<div class="bar arrow-top-r"></div>
+				<div class="bar arrow-middle-r"></div>
+				<div class="bar arrow-bottom-r"></div>
+			</button>
+			<nav class="nav-container hidden hideNav">
+				<ul class="nav-list">
+					<li class="list-item"><a href="{% url 'advertiser:login' %}"><i class="fa fa-user"></i></a></li>
+					 <li class="list-item"><a href="{% url 'advertiser:dashboard' %}"><i class="fa fa-server"></i></a></li>
+                    <li class="list-item"><a href="{% url 'advertiser:registration' %}"><i class="fa fa-sign-in"></i></a></li>
+					<li class="list-item"><a href="{% url 'advertiser:contact' %}"><i class="fa fa-phone"></i></a></li>
+				
+				</ul>
+			</nav>
+		</div>
+		<!-- //Navigation -->
+
+		<!-- banner-slider-about -->
+			<div class="waal_banner_info two">
+				<h3><a href="{% url 'advertiser:contact' %}">Contact</a></h3>
+			</div>
+			<div class="clearfix"></div>
+		<!-- //banner-slider-about -->
+		
+	<!-- //Header -->
+	
+	<!-- main-section-starts-here -->
+	<!-- contact-inner-page -->
+	<div class="mail">
+		<div class="container">
+			<div class="waal_contact_grids">
+				<div class="col-md-6 waal_contact_grid_left">
+					<form action="#" method="post">
+						<input type="text" placeholder="Name" name="Name" required="" />
+						<input type="text" placeholder="Phone" name="Phone" required="" />
+					</form>
+				</div>
+				<div class="col-md-6 waal_contact_grid_left">
+					<form action="#" method="post">
+						<input type="email" placeholder="Email" name="Email" required="" />
+
+					</form>
+				</div>
+				<div class="clearfix"> </div>
+				<form action="#" method="post">
+					<textarea name="Message" placeholder="Type Message Here...." required=""></textarea>
+					<input type="submit" value="Submit Now" />
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- //contact-inner-page -->
+
+		<!-- footer-starts-here -->
+			<div class="footer-waal">
+				<div class="container">
+					<div class="footer-grids">
+						<div class="col-md-4 footer-grid">
+							<h4>About</h4>
+							<p> We maintain data confidentiality for customers to increase the safety of our system and to provide the highest quality services.</p>
+					</div>
+						<div class="col-md-4 footer-grid">
+							<h4>Subscribe For Newsletter</h4>
+							<form action="#" method="post">
+								<input type="email" name="email" placeholder="Email" required="">
+								<input type="submit" value="Subscribe">
+							</form>
+						</div>
+						<div class="col-md-4 footer-grid f3">
+							<h4>Address</h4>
+							<ul>
+								<li>Future academy</li>
+							</ul>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		<!-- footer-ends-here -->
+		
+		<!-- copyright-starts-here -->
+			<div class="copy-section">
+				<div class="container">
+					<div class="icons-waal">
+								<ul>
+									<li><a class="facebook" href="#"><i class="fa fa-facebook" aria-hidden="true"></i><span>Facebook</span></a></li>
+								
+									<li><a class="googleplus" href="#"><i class="fa fa-google-plus" aria-hidden="true"></i><span>Google+</span></a></li>
+								
+								</ul>
+						</div>
+					<div class="footer-top">
+							<p>© 2018  </p>
+					</div>
+				</div>
+			</div>
+		<!-- copyright-ends-here -->
+		
+	<!-- //main-section-ends-here -->
+
+	
+<!-- Custom-JavaScript-Files -->
+
+	<script type="text/javascript" src="{% static 'advertiser/website/js/jquery-2.1.4.min.js' %}"></script> <!-- Default-JavaScript-File -->
+	<script type="text/javascript" src="{% static 'advertiser/website/js/bootstrap.js' %}"></script> <!-- Necessary-JavaScript-File-For-Bootstrap -->
+
+	<!-- Navigation-JavaScript -->
+	<script type="text/javascript" src="{% static 'advertiser/website/js/jquery-func.js' %}"></script>
+	<script>
+		$(window).load(function() {
+			$(".btn-nav").on("click tap", function() {
+				$(".nav-container").toggleClass("showNav hideNav").removeClass("hidden");
+				$(this).toggleClass("animated");
+			});
+		});
+	</script>
+	<!-- //Navigation-JavaScript -->
+
+<!-- //Custom-JavaScript-Files -->
+
+</body>
+</html>
