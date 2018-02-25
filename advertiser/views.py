@@ -297,7 +297,10 @@ class UpdateFormView(View):
             category = form.cleaned_data['category']
             Advertisement.objects.filter(id=part_id).update(name=name, description=description)
             TargetedAge.objects.filter(advertisement=part_id).update(max_age=max_age,min_age=min_age)
-            AdvertisementCategory.objects.filter(advertisement=part_id).update(category=category)
+            for i in category:
+                cat=Category.objects.get(color=i)
+                AdvertisementCategory.objects.filter(advertisement=part_id).update(category=cat)
+
             newform = update(None)
             return render(request, 'advertiser/dashboard/updateData.html', {'form': newform})
 

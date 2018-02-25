@@ -70,10 +70,6 @@ class changeForm(forms.Form):
     username.widget = forms.TextInput(attrs={'placeholder': 'Username'})
 
 class update(forms.Form):
-    def __init__(self, *args, **kwargs):
-        super(update, self).__init__(*args, **kwargs)
-        self.fields['category'].choices = Category.objects.all().values_list("color", "color")
-
 
     name = forms.CharField(required=True,widget=forms.TextInput(attrs={'placeholder': 'name', ' class': 'form-control1'}))
     description = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'description', ' class': 'form-control1'}))
@@ -81,6 +77,7 @@ class update(forms.Form):
     min_age = forms.IntegerField(required=True,widget=forms.TextInput(attrs={'placeholder': 'min_age', ' class': 'form-control1'}))
 
     category = forms.MultipleChoiceField(
+        choices=Category.objects.all().values_list("color", "color"),
         initial='0',
         widget=forms.SelectMultiple(attrs={' class': 'js-example-basic-multiple'}),
         required=True,
