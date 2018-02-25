@@ -35,16 +35,14 @@ class LoginForm(forms.Form):
     password.widget = forms.PasswordInput(attrs={'placeholder': 'Password'})
 
 
-OPTIONS = [
-    ("0", "*ALL"),
-    ("1", "Sport"),
-    ("2", "Technology"),
-]
+
 
 
 class Userinput(forms.Form):
 
-
+    def __init__(self, *args, **kwargs):
+        super(Userinput, self).__init__(*args, **kwargs)
+        self.fields['category'].choices = Category.objects.all().values_list("color", "color")
 
     name = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'name' , ' class':'form-control1'}))
     description = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'description' , ' class':'form-control1'}))
@@ -55,7 +53,6 @@ class Userinput(forms.Form):
     # category = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=OPTIONS)
 
     category = forms.MultipleChoiceField(
-        choices=OPTIONS,
         initial='0',
         widget=forms.SelectMultiple(attrs={' class':'js-example-basic-multiple'}),
         required=True,
@@ -77,17 +74,17 @@ class changeForm(forms.Form):
     username.widget = forms.TextInput(attrs={'placeholder': 'Username'})
 
 class update(forms.Form):
-    name = forms.CharField(required=True,
-                           widget=forms.TextInput(attrs={'placeholder': 'name', ' class': 'form-control1'}))
-    description = forms.CharField(required=True, widget=forms.TextInput(
-        attrs={'placeholder': 'description', ' class': 'form-control1'}))
-    max_age = forms.IntegerField(required=True,
-                                 widget=forms.TextInput(attrs={'placeholder': 'max_age', ' class': 'form-control1'}))
-    min_age = forms.IntegerField(required=True,
-                                 widget=forms.TextInput(attrs={'placeholder': 'min_age', ' class': 'form-control1'}))
+    def __init__(self, *args, **kwargs):
+        super(update, self).__init__(*args, **kwargs)
+        self.fields['category'].choices = Category.objects.all().values_list("color", "color")
+
+
+    name = forms.CharField(required=True,widget=forms.TextInput(attrs={'placeholder': 'name', ' class': 'form-control1'}))
+    description = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'description', ' class': 'form-control1'}))
+    max_age = forms.IntegerField(required=True,widget=forms.TextInput(attrs={'placeholder': 'max_age', ' class': 'form-control1'}))
+    min_age = forms.IntegerField(required=True,widget=forms.TextInput(attrs={'placeholder': 'min_age', ' class': 'form-control1'}))
 
     category = forms.MultipleChoiceField(
-        choices=OPTIONS,
         initial='0',
         widget=forms.SelectMultiple(attrs={' class': 'js-example-basic-multiple'}),
         required=True,

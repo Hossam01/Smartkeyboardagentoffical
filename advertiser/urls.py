@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'advertisements/$', advertisement, name='Advertisements'),
     url(r'advertisements/(?P<part_id>[0-9]+)/$', delete, name='delete'),
     url(r'Changepassword/$', ChangepasswordFormView.as_view(), name='Changepassword'),
-    url(r'Advertisements/(?P<part_id>[0-9]+)/update/$', UpdateFormView.as_view(), name='update'),
+    url(r'advertisements/(?P<part_id>[0-9]+)/update/$', UpdateFormView.as_view(), name='update'),
 
 
 ]

@@ -8,6 +8,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 from api.models import Advertiser
+from api.models import TargetedAge,AdvertisementCategory,Category
 from .forms import *
 
 
@@ -203,8 +204,14 @@ class AdvertisementFormView(View):
             pub_date = form.cleaned_data['pub_date']
             max_age = form.cleaned_data['max_age']
             min_age = form.cleaned_data['min_age']
-            category = form.cleaned_data.get('category')
+            category = form.cleaned_data['category']
             Advertisement.objects.create(name=name, description=description, pub_date=pub_date, advertiser=hoss)
+            pop = Advertisement.objects.get(name=name)
+            TargetedAge.objects.create(min_age=min_age, max_age=max_age,advertisement=pop)
+            if not Category.objects.filter(color=category).exists():
+                Category.objects.create(color=category)
+            cat=Category.objects.get(color=category)
+            AdvertisementCategory.objects.create(advertisement=pop,category=cat)
         newform = Userinput(None)
         return render(request, 'advertiser/dashboard/forms.html', {'form': newform})
 
@@ -280,7 +287,10 @@ class UpdateFormView(View):
         if form.is_valid():
             name = form.cleaned_data['name']
             description = form.cleaned_data['description']
+            max_age = form.cleaned_data['max_age']
+            min_age = form.cleaned_data['min_age']
             Advertisement.objects.filter(id=part_id).update(name=name, description=description)
+            TargetedAge.objects.filter(advertisement=part_id).update(max_age=max_age,min_age=min_age)
             newform = update(None)
             return render(request, 'advertiser/dashboard/updateData.html', {'form': newform})
 

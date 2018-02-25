@@ -32,7 +32,7 @@ class Themes(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=45, null=False)
+    color = models.CharField(max_length=100, null=False)
 
 
 class City(models.Model):
@@ -100,5 +100,10 @@ class RejectedAdvertisement(models.Model):
     advertiser = models.ForeignKey('Advertiser', models.DO_NOTHING)
 
 
+class AdvertisementCategory(models.Model):
+    advertisement = models.ForeignKey('Advertisement', models.DO_NOTHING, null=False)
+    category = models.ForeignKey('Category', models.DO_NOTHING,null=False)
 
-
+class Tag(models.Model):
+    tag = models.CharField(max_length=20,null=False)
+    category = models.ForeignKey('Category', models.DO_NOTHING,null=False)
