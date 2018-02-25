@@ -1,6 +1,5 @@
 from django import forms
 from .views import *
-
 from api.models import Advertisement
 import datetime
 
@@ -50,12 +49,11 @@ class Userinput(forms.Form):
     # category = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=OPTIONS)
 
     category = forms.MultipleChoiceField(
-        choices=Category.objects.all().values_list("id", "color"),
+        choices=Category.objects.all().values_list("color","color"),
         initial='0',
         widget=forms.SelectMultiple(attrs={' class':'js-example-basic-multiple'}),
         required=True,
         label='Office'
-
     )
 
 
