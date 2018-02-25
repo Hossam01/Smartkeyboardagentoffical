@@ -32,7 +32,7 @@ class Themes(models.Model):
 
 
 class Category(models.Model):
-    color = models.CharField(max_length=100, null=False)
+    color = models.CharField(max_length=300, null=False)
 
 
 class City(models.Model):

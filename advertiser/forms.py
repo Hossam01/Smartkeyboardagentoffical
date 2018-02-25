@@ -40,9 +40,6 @@ class LoginForm(forms.Form):
 
 class Userinput(forms.Form):
 
-    def __init__(self, *args, **kwargs):
-        super(Userinput, self).__init__(*args, **kwargs)
-        self.fields['category'].choices = Category.objects.all().values_list("color", "color")
 
     name = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'name' , ' class':'form-control1'}))
     description = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'description' , ' class':'form-control1'}))
@@ -53,6 +50,7 @@ class Userinput(forms.Form):
     # category = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=OPTIONS)
 
     category = forms.MultipleChoiceField(
+        choices=Category.objects.all().values_list("id", "color"),
         initial='0',
         widget=forms.SelectMultiple(attrs={' class':'js-example-basic-multiple'}),
         required=True,

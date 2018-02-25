@@ -205,6 +205,7 @@ class AdvertisementFormView(View):
             max_age = form.cleaned_data['max_age']
             min_age = form.cleaned_data['min_age']
             category = form.cleaned_data['category']
+            #category = request.POST.getlist('category')
             Advertisement.objects.create(name=name, description=description, pub_date=pub_date, advertiser=hoss)
             pop = Advertisement.objects.get(name=name)
             TargetedAge.objects.create(min_age=min_age, max_age=max_age,advertisement=pop)
@@ -269,7 +270,12 @@ def delete(request, part_id):
     stuents = Advertisement.objects.all().filter(advertiser=hoss)
     context = {'stuents': stuents}
     object = Advertisement.objects.get(id=part_id)
+    pp=TargetedAge.objects.get(advertisement=part_id)
+    cat=AdvertisementCategory.objects.get(advertisement=part_id)
+    pp.delete()
+    cat.delete()
     object.delete()
+
     return render(request, 'advertiser/dashboard/update.html',context)
 
 
@@ -289,8 +295,10 @@ class UpdateFormView(View):
             description = form.cleaned_data['description']
             max_age = form.cleaned_data['max_age']
             min_age = form.cleaned_data['min_age']
+            category = form.cleaned_data['category']
             Advertisement.objects.filter(id=part_id).update(name=name, description=description)
             TargetedAge.objects.filter(advertisement=part_id).update(max_age=max_age,min_age=min_age)
+            #AdvertisementCategory.objects.filter(advertisement=part_id).update(category=category)
             newform = update(None)
             return render(request, 'advertiser/dashboard/updateData.html', {'form': newform})
 
