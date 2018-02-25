@@ -268,9 +268,9 @@ def delete(request, part_id):
         hoss = Advertiser.objects.get(name=username)
     stuents = Advertisement.objects.all().filter(advertiser=hoss)
     context = {'stuents': stuents}
-    object = Advertisement.objects.get(id=part_id)
-    pp=TargetedAge.objects.get(advertisement=part_id)
-    cat=AdvertisementCategory.objects.get(advertisement=part_id)
+    object = Advertisement.objects.filter(id=part_id)
+    pp=TargetedAge.objects.filter(advertisement=part_id)
+    cat=AdvertisementCategory.objects.filter(advertisement=part_id)
     pp.delete()
     cat.delete()
     object.delete()
