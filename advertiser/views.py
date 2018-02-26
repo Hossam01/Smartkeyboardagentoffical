@@ -252,14 +252,18 @@ class ResetFormView(View):
                           {'form': form})
 
 
-global hoss,username
+
 def advertisement(request):
     if 'username' in request.session:
         username = request.session['username']
         hoss = Advertiser.objects.get(name=username)
-    stuents = Advertisement.objects.all().filter(advertiser=hoss)
-    context = {'stuents': stuents}
-    return render(request, 'advertiser/dashboard/update.html', context)
+        stuents = Advertisement.objects.all().filter(advertiser=hoss)
+        context = {'stuents': stuents}
+        return render(request, 'advertiser/dashboard/update.html', context)
+    else:
+        return redirect('/advertiser/login/')
+	 
+	
 
 
 def delete(request, part_id):
@@ -283,6 +287,8 @@ class UpdateFormView(View):
     template_name = 'advertiser/dashboard/updateData.html'
 
     def get(self, request, part_id):
+        if 'username' not in request.session:
+            return redirect('/advertiser/login/')
         form = update(None)
         context = {'form': form}
         return render(request, 'advertiser/dashboard/updateData.html', context)
